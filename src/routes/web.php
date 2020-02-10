@@ -17,6 +17,9 @@ use Illuminate\Http\Request;
 Route::get('/', function () {
     $tasks = Task::orderBy('created_at','asc')->get();
     return view('tasks', compact('tasks'));
+
+Route::get('/folders/{id}/tasks/{tasks}/edit', 'TaskController@showEditForm')->name('tasks.edit');
+
 });
 
 Route::delete('/task/{task}', function (Task $task) {
@@ -41,4 +44,6 @@ Route::post('/task', function (Request $request) {
     $task->save();
 
     return redirect('/');
+
+Route::post('/folders/{id}/tasks/{tasks}/edit', 'TaskController@edit');
 });
