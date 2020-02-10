@@ -55,7 +55,16 @@
                             <td class="table-text">
                                 <div>{{ $task->name }}</div>
                             </td>
-                            <!-- TODO: 削除ボタン -->
+                            <!--更新ボタン-->
+                            <td>
+                                    <form action="{{ url('task/',$task->id) }}" method="GET">
+                                            @csrf
+                                <span class="pull-right">
+                                   <button class="btn btn-m btn-info" v-on:click="edit(index);">
+                                   <span class="glyphicon glyphicon-pencil"></span> 編集
+                                   </button>
+                                </span>
+                             </td>
 
                             <!-- 削除ボタン -->
 
@@ -72,15 +81,7 @@
 
                                <!-- 編集ボタン　-->
 
-　　<td>
-
-          <span class="pull-right">
-             <button class="btn btn-m btn-info" v-on:click="edit(index);">
-             <span class="glyphicon glyphicon-pencil"></span> 編集
-             </button>
-          </span>
-
-　　</td>
+　　
 　                    </tr>
                     @endforeach
                 </tbody>
