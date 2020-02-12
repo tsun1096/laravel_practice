@@ -18,7 +18,6 @@ Route::get('/', function () {
     $tasks = Task::orderBy('created_at','asc')->get();
     return view('tasks', compact('tasks'));
 
-Route::get('/folders/{id}/tasks/{tasks}/edit', 'TaskController@showEditForm')->name('tasks.edit');
 
 });
 
@@ -45,5 +44,5 @@ Route::post('/task', function (Request $request) {
 
     return redirect('/');
 
-Route::post('/folders/{id}/tasks/{tasks}/edit', 'TaskController@edit');
+
 });

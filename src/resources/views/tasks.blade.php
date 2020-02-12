@@ -55,34 +55,27 @@
                             <td class="table-text">
                                 <div>{{ $task->name }}</div>
                             </td>
-                            <!--更新ボタン-->
-                            <td>
-                                    <form action="{{ url('task/',$task->id) }}" method="GET">
-                                            @csrf
+                            <!-- 編集ボタン　-->
+                        <td>
+                            <form action="{{ url('task/',$task->id) }}" method="GET">
+                                @csrf
                                 <span class="pull-right">
                                    <button class="btn btn-m btn-info" v-on:click="edit(index);">
-                                   <span class="glyphicon glyphicon-pencil"></span> 編集
+                                    <span class="glyphicon glyphicon-pencil"></span> 編集
                                    </button>
                                 </span>
-                             </td>
-
+                        </td>
                             <!-- 削除ボタン -->
-
                             <td>
                                 <form action="{{ url('task/' . $task->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-
                                     <button type="submit" class="btn btn-danger">
                                         <i class="fa fa-btn fa-trash"></i> 削除
                                     </button>
                                 </form>
                             </td>
-
-                               <!-- 編集ボタン　-->
-
-　　
-　                    </tr>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>

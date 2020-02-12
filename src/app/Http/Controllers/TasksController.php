@@ -1,9 +1,10 @@
 <?php
 
-public function update(Request $request, $id)
+public function destroy($id)
 {
   $task = Task::find($id);
-  return view('taskedit', ['task' => $task]);
+  $task->delete();
+  return redirect()->route('tasks.index');
 }
 {
   //バリデーション
