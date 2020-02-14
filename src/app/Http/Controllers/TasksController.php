@@ -1,34 +1,44 @@
-<?php
+namespace App\Http\Controllers;
+use Illuminate\Http\Request;
 
-public function destroy($id)
+// 以下2行追加
+use Validator;
+use App\Task;
+
+class TasksController extends Controller
 {
-  $task = Task::find($id);
-  $task->delete();
-  return redirect()->route('tasks.index');
-}
-{
-  //バリデーション
-  $validator = Validator::make($request->all(), [
-    'task' => 'required|max:255',
-    // 下記を追記
-    'deadline' => 'required',
-  ]);
-  //バリデーション:エラー
-  if ($validator->fails()) {
-    return redirect()
-      ->route('tasks.index')
-      ->withInput()
-      ->withErrors($validator);
+  public function index()
+  {
+    //
   }
-  // Eloquentモデル
-  $task = new Task;
-  $task->task = $request->task;
-  // 下記のように編集
-  $task->deadline = $request->deadline;
-  $task->comment = $request->comment;;
-  // ここまで編集
-  $task->save();
-  //「/」ルートにリダイレクト
-  return redirect()->route('tasks.index');
 
+  public function create()
+  {
+    //
+  }
+
+  public function store(Request $request)
+  {
+    //
+  }
+
+  public function show($id)
+  {
+    //
+  }
+
+  public function edit($id)
+  {
+    //
+  }
+
+  public function update(Request $request, $id)
+  {
+    //
+  }
+
+  public function destroy($id)
+  {
+    //
+  }
 }
