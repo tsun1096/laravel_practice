@@ -18,12 +18,14 @@ Route::get('/', function () {
     $tasks = Task::orderBy('created_at','asc')->get();
     return view('tasks', compact('tasks'));
 
-
 });
+
+Route::resource('tasks', 'TasksController')->only([
+    'index', 'store', 'edit', 'update', 'destroy'
+]);
 
 Route::delete('/task/{task}', function (Task $task) {
     $task->delete();
-
     return redirect('/');
 });
 
@@ -46,3 +48,4 @@ Route::post('/task', function (Request $request) {
 
 
 });
+

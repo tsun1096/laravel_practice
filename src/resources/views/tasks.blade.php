@@ -57,7 +57,7 @@
                             </td>
                             <!-- 編集ボタン　-->
                         <td>
-                            <form action="{{ url('task/',$task->id) }}" method="GET">
+                            <form action="{{ url('tasks.edit',$task->id) }}" method="GET">
                                 @csrf
                                 <span class="pull-right">
                                    <button class="btn btn-m btn-info" v-on:click="edit(index);">
