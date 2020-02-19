@@ -32,7 +32,7 @@
                 </div>
             </div>
             <!-- TODO: 現在のタスク -->
-            @if (count($tasks) > 0)
+            @if (count($tasks ?? '') > 0)
     <div class="panel panel-default">
         <div class="panel-heading">
             現在のタスク
@@ -50,14 +50,14 @@
 
                 <!-- テーブル本体 -->
                 <tbody>
-                    @foreach ($tasks as $task)
+                    @foreach ($tasks ?? '' as $task)
                         <tr>
                             <td class="table-text">
                                 <div>{{ $task->name }}</div>
                             </td>
                             <!-- 編集ボタン　-->
                         <td>
-                            <form action="{{ url('tasks.edit',$task->id) }}" method="GET">
+                            <form action="{{ url('task.edit',$task->id) }}" method="GET">
                                 @csrf
                                 <span class="pull-right">
                                    <button class="btn btn-m btn-info" v-on:click="edit(index);">

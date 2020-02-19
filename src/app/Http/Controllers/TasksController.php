@@ -20,6 +20,15 @@ class TasksController extends Controller
     //
   }
 
+  public function showEditForm(int $id, int $task_id)
+{
+    $task = Task::find($task_id);
+
+    return view('tasks/edit', [
+        'task' => $task,
+    ]);
+}
+
   public function store(Request $request)
   {
     $validator = Validator::make($request->all(), [
@@ -76,12 +85,21 @@ class TasksController extends Controller
   $task->save();
   return redirect()->route('tasks.index');
 }
-  }
 
-  public function destroy($id)
-  {
-    $task = Task::find($id);
-  $task->delete();
-  return redirect()->route('tasks.index');
-  }
+public function edit(int $id, int $task_id, EditTask $request)
+{
+    // 1
+    $task = Task::find($task_id);
+
+    // 2
+    $task->title = $request->title;
+    $task->status = $request->status;
+    $task->due_date = $request->due_date;
+    $task->save();
+
+    // 3
+    return redirect()->route('tasks.index', [
+        'id' => $task->folder_id,
+    ]);
+}
 }

@@ -20,6 +20,10 @@ Route::get('/', function () {
 
 });
 
+Route::get('/folders/{id}/tasks/{task_id}/edit', 'TaskController@showEditForm')->name('tasks.edit');
+
+Route::post('/folders/{id}/tasks/{task_id}/edit', 'TaskController@edit');
+
 Route::resource('tasks', 'TasksController')->only([
     'index', 'store', 'edit', 'update', 'destroy'
 ]);
