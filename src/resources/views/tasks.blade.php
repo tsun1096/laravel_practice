@@ -11,7 +11,7 @@
 
 
                     <!-- 新タスクフォーム -->
-                    <form action="{{ url('task')}}" method="POST" class="form-horizontal">
+                    <form action="{{ route('tasks.store')}}" method="POST" class="form-horizontal">
                         @csrf
                         <!-- タスク名 -->
                         <div class="form-group">
@@ -60,7 +60,7 @@
                                     <form action="{{ url('task/',$task->id) }}" method="GET">
                                             @csrf
                                 <span class="pull-right">
-                                   <button class="btn btn-m btn-info" v-on:click="edit(index);">
+                                   <button class="btn btn-m btn-info" >
                                    <span class="glyphicon glyphicon-pencil"></span> 編集
                                    </button>
                                 </span>
