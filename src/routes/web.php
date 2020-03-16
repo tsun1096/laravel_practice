@@ -14,19 +14,19 @@
 use App\Task;
 use Illuminate\Http\Request;
 
-Route::resource('tasks', 'TasksController');
+Route::resource('/tasks', 'TasksController'); {
+};
 // Route::get('/', function () {
 
 // Route::get('/folders/{id}/tasks/{tasks}/edit', 'TaskController@showEditForm')->name('taskedit');
 
-// });
+
 
 /* 削除機能　*/
-Route::POST('/task/{task}', function (Task $task) {
-    $task->delete();
-
-    return redirect('/');
-});
+Route::POST('/tasks', 'TasksController@destroy' ); {
+//     $task->delete();
+//     return redirect('/');
+ };
 
 // /*　タスク追加　*/
 // Route::post('/task', function (Request $request) {

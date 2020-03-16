@@ -55,7 +55,7 @@
                             <td class="table-text">
                                 <div>{{ $task->name }}</div>
                             </td>
-                            <!--更新ボタン-->
+                            <!--編集ボタン-->
                             <td>
                                     <form action="{{ url('task/',$task->id) }}" method="GET">
                                             @csrf
@@ -69,7 +69,7 @@
                             <!-- 削除ボタン -->
 
                             <td>
-                                <form action="{{ url('task/' . $task->id) }}" method="POST">
+                                <form action="{{ route('tasks.destroy',$task->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
 
@@ -78,11 +78,7 @@
                                     </button>
                                 </form>
                             </td>
-
-                               <!-- 編集ボタン　-->
-
-　　
-　                    </tr>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>

@@ -51,8 +51,6 @@ class TasksController extends Controller
         $task->name = $request->name;
         $task->save();
         return redirect()->route('tasks.index');
-
-
     }
 
     /**
@@ -95,12 +93,12 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(task $task)
+    public function destroy($id)
     {
+        $task = Task::find($id);
         $task->delete();
-        return redirect('/');
-      }
-
-        //
+        return redirect()->route('tasks.destroy');
     }
 
+    //
+}
