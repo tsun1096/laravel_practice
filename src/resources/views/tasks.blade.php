@@ -62,9 +62,9 @@
                                 <span class="pull-right">
                                    <button class="btn btn-m btn-info" >
                                    <span class="glyphicon glyphicon-pencil"></span> 編集
-                                   </button>
-                                </span>
-                             </td>
+                                   </button></span>
+                                    </form>
+                            </td>
 
                             <!-- 削除ボタン -->
 
