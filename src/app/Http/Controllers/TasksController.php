@@ -1,105 +1,104 @@
 <?php
 
-
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
 
-
-use Validator;
 use App\Task;
+use Illuminate\Http\Request;
 
 class TasksController extends Controller
 {
-  public function index()
-  {
-    return view('tasks');
-}
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $tasks = Task::orderBy('created_at', 'asc')->get();
+        return view('tasks', compact('tasks'));
+        //
+    }
 
-  public function create()
-  {
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        // $validator = Validator::make($request->all(), [
+        //     'name' => 'required|max:10',
+        // ]);
+
+        // if ($validator->fails()) {
+        //     return redirect('/')
+        //         ->withInput()
+        //         ->withErrors($validator);
+        // }
+
+        $task = new Task;
+        $task->name = $request->name;
+        $task->save();
+        return redirect()->route('tasks.index');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request,$id)
+    {
+        $task = Task::find($id);
+        $task->delete();
+        return redirect()->route('tasks.index');
+    }
+
     //
-  }
-
-  public function showEditForm(int $id, int $task_id)
-{
-    $task = Task::find($task_id);
-
-    return view('tasks/edit', [
-        'task' => $task,
-    ]);
-}
-
-  public function store(Request $request)
-  {
-    $validator = Validator::make($request->all(), [
-        'task' => 'required|max:255',
-        'deadline' => 'required',
-      ]);
-      // バリデーション:エラー
-  if ($validator->fails()) {
-    return redirect()
-      ->route('tasks.index')
-      ->withInput()
-      ->withErrors($validator);
-  }
-  // Eloquentモデル
-  $task = new Task;
-  $task->task = $request->task;
-  $task->deadline = $request->deadline;
-  $task->comment = $request->comment;;
-  $task->save();
-  // ルーティング「tasks.index」にリクエスト送信（一覧ページに移動）
-  return redirect()->route('tasks.index');
-  }
-
-  public function show($id)
-  {
-    //
-  }
-
-  public function edit($id)
-  {
-    $task = Task::find($id);
-  return view('taskedit', ['task' => $task]);
-  }
-
-  public function update(Request $request, $id)
-  {
-     //バリデーション
-  $validator = Validator::make($request->all(), [
-    'task' => 'required|max:255',
-    'deadline' => 'required',
-  ]);
-  //バリデーション:エラー
-  if ($validator->fails()) {
-    return redirect()
-      ->route('tasks.edit', $id)
-      ->withInput()
-      ->withErrors($validator);
-  }
-  //データ更新処理
-  $task = Task::find($id);
-  $task->task   = $request->task;
-  $task->deadline = $request->deadline;
-  $task->comment = $request->comment;
-  $task->save();
-  return redirect()->route('tasks.index');
-}
-
-public function edit(int $id, int $task_id, EditTask $request)
-{
-    // 1
-    $task = Task::find($task_id);
-
-    // 2
-    $task->title = $request->title;
-    $task->status = $request->status;
-    $task->due_date = $request->due_date;
-    $task->save();
-
-    // 3
-    return redirect()->route('tasks.index', [
-        'id' => $task->folder_id,
-    ]);
-}
 }

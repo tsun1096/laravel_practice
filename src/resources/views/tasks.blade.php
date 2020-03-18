@@ -11,7 +11,7 @@
 
 
                     <!-- 新タスクフォーム -->
-                    <form action="{{ url('task')}}" method="POST" class="form-horizontal">
+                    <form action="{{ route('tasks.store')}}" method="POST" class="form-horizontal">
                         @csrf
                         <!-- タスク名 -->
                         <div class="form-group">
@@ -55,19 +55,20 @@
                             <td class="table-text">
                                 <div>{{ $task->name }}</div>
                             </td>
-                            <!-- 編集ボタン　-->
-                        <td>
-                            <form action="{{ url('task.edit',$task->id) }}" method="GET">
-                                @csrf
+                            <!--編集ボタン-->
+                            <td>
+                                    <form action="{{ url('task/',$task->id) }}" method="GET">
+                                            @csrf
                                 <span class="pull-right">
-                                   <button class="btn btn-m btn-info" v-on:click="edit(index);">
-                                    <span class="glyphicon glyphicon-pencil"></span> 編集
-                                   </button>
-                                </span>
-                        </td>
+                                   <button class="btn btn-m btn-info" >
+                                   <span class="glyphicon glyphicon-pencil"></span> 編集
+                                   </button></span>
+                                    </form>
+                            </td>
+
                             <!-- 削除ボタン -->
                             <td>
-                                <form action="{{ url('task/' . $task->id) }}" method="POST">
+                                <form action="{{ route('tasks.destroy',$task->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">
