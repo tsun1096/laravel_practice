@@ -72,6 +72,8 @@ class TasksController extends Controller
      */
     public function edit($id)
     {
+        $task = Task::findOrFail($id);
+        return view('tasks.edit', compact('task'));
         //
     }
 
@@ -84,6 +86,14 @@ class TasksController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'updatedTaskName' => 'required|min:1|max:255',
+        ]);
+        $task = Task::findOrFail($id);
+        $task->name = $request->updatedTaskName; # name="updatedTaskName"
+        $task->save();
+
+        return redirect()->route('tasks.index');
         //
     }
 
@@ -93,7 +103,7 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request,$id)
+    public function destroy(Request $request, $id)
     {
         $task = Task::find($id);
         $task->delete();

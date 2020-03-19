@@ -23,7 +23,6 @@ Route::resource('/tasks', 'TasksController');
 
 
 
-
 // /*　タスク追加　*/
 // Route::post('/task', function (Request $request) {
 //     $validator = Validator::make($request->all(), [
