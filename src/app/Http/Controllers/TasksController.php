@@ -42,7 +42,7 @@ class TasksController extends Controller
         // ]);
 
         // if ($validator->fails()) {
-        //     return redirect('/')
+        //     return redirect('tasks.index')
         //         ->withInput()
         //         ->withErrors($validator);
         // }
